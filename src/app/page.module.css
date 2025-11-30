@@ -1954,3 +1954,7 @@
     padding: 5rem 1rem 2rem;
   }
 }
+
+/* Landing page already has dark mode support with [data-theme="light"] selectors 
+   The default is dark mode (as shown in .landingContainer)
+   Light mode overrides are applied via [data-theme="light"] selectors */

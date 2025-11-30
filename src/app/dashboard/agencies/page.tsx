@@ -213,11 +213,6 @@ export default function AgenciesPage() {
                       </select>
                     </div>
                   ))}
-                  {Object.values(filters).some((v) => v || searchTerm) && (
-                    <button onClick={clearAllFilters} className={styles.clearFiltersBtn}>
-                      Clear Filters
-                    </button>
-                  )}
                 </div>
               </div>
             </div>

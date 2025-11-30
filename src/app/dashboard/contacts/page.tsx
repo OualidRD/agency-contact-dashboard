@@ -31,6 +31,7 @@ const EXCLUDE_COLUMNS = [
   'updated_at',      // System timestamp
   'email_type',      // Internal classification
   'id',              // System ID
+  'agency_id',       // Will be replaced with agency name
 ];
 
 // Columns that can be used for filtering
@@ -155,6 +156,7 @@ export default function ContactsPage() {
   const [agencyMap, setAgencyMap] = useState<{ [key: string]: string }>({});
   const [viewedContactIds, setViewedContactIds] = useState<Set<string>>(new Set());
   const [showViewedOnly, setShowViewedOnly] = useState(false);
+  const [selectedAgency, setSelectedAgency] = useState<Agency | null>(null);
 
   // Get list of viewed contact IDs
   const getViewedContactIds = (userId: string): Set<string> => {
@@ -560,22 +562,93 @@ export default function ContactsPage() {
               </div>
               <div className={styles.modalBody}>
                 <div className={styles.modalGrid}>
-                  {Object.entries(getDisplayData(selectedContact)).map(([key, value]) => (
-                    <div key={key} className={styles.modalItem}>
-                      <label className={styles.modalLabel}>
-                        {key.charAt(0).toUpperCase() + key.replace(/_/g, ' ').slice(1)}
-                      </label>
+                  {Object.entries(getDisplayData(selectedContact)).map(([key, value]) => {
+                    // Skip agency field since we'll render it as clickable button below
+                    if (key === 'agency') {
+                      return null;
+                    }
+                    return (
+                      <div key={key} className={styles.modalItem}>
+                        <label className={styles.modalLabel}>
+                          {key.charAt(0).toUpperCase() + key.replace(/_/g, ' ').slice(1)}
+                        </label>
+                        <p className={styles.modalValue}>
+                          {key === 'email' && value && value !== 'N/A' ? (
+                            <a href={`mailto:${value}`} className={styles.modalLink}>
+                              {value}
+                            </a>
+                          ) : (
+                            value || 'N/A'
+                          )}
+                        </p>
+                      </div>
+                    );
+                  })}
+                  {selectedContact.agency_id && (
+                    <div className={styles.modalItem}>
+                      <label className={styles.modalLabel}>Agency</label>
                       <p className={styles.modalValue}>
-                        {key === 'email' && value && value !== 'N/A' ? (
-                          <a href={`mailto:${value}`} className={styles.modalLink}>
-                            {value}
-                          </a>
-                        ) : (
-                          value || 'N/A'
-                        )}
+                        <button
+                          onClick={() => {
+                            const agency = agencies.find(a => a.id === selectedContact.agency_id);
+                            if (agency) {
+                              setSelectedAgency(agency);
+                              setSelectedContact(null);
+                            }
+                          }}
+                          className={styles.agencyLink}
+                          title="View agency details"
+                        >
+                          {agencyMap[selectedContact.agency_id] || 'N/A'} →
+                        </button>
                       </p>
                     </div>
-                  ))}
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Agency Details Modal (from Contact Link) */}
+        {selectedAgency && (
+          <div className={styles.modalOverlay} onClick={() => setSelectedAgency(null)}>
+            <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+              <button
+                className={styles.closeButton}
+                onClick={() => setSelectedAgency(null)}
+              >
+                ✕
+              </button>
+              <div className={styles.modalHeader}>
+                <h2 className={styles.modalTitle}>{selectedAgency.name}</h2>
+                {selectedAgency.type && (
+                  <span className={styles.modalBadge}>{selectedAgency.type}</span>
+                )}
+              </div>
+              <div className={styles.modalBody}>
+                <div className={styles.modalGrid}>
+                  {Object.entries(selectedAgency).map(([key, value]) => {
+                    if (['id', 'created_at', 'updated_at', 'mailing_address', 'grade_span', 'locale', 'csa_cbsa', 'domain_name', 'status', 'student_teacher_ratio', 'supervisory_union', 'total_schools', 'total_students'].includes(key)) {
+                      return null;
+                    }
+                    return (
+                      <div key={key} className={styles.modalItem}>
+                        <label className={styles.modalLabel}>
+                          {key.charAt(0).toUpperCase() + key.replace(/_/g, ' ').slice(1)}
+                        </label>
+                        <p className={styles.modalValue}>
+                          {key === 'website' && value && value !== 'N/A' ? (
+                            <a href={value.startsWith('http') ? value : `https://${value}`} target="_blank" rel="noopener noreferrer" className={styles.modalLink}>
+                              {value}
+                            </a>
+                          ) : (
+                            value || 'N/A'
+                          )}
+                        </p>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>

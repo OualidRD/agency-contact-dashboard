@@ -5,6 +5,11 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 50%, #fafbfc 100%);
   min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] .container {
+  background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 50%, #0f0f19 100%);
 }
 
 .header {
@@ -786,4 +791,191 @@
     height: 60px;
     font-size: 2rem;
   }
+}
+
+/* ═════════════════════════════════════════════════════════════════
+   DARK MODE STYLES
+   ═════════════════════════════════════════════════════════════════ */
+
+[data-theme="dark"] .header {
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.08) 0%, rgba(0, 212, 132, 0.03) 100%);
+  border-color: rgba(0, 102, 204, 0.25);
+}
+
+[data-theme="dark"] .header h1 {
+  background: linear-gradient(135deg, #ffffff 0%, #00a3ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .header p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .loadingContainer {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="dark"] .statCard {
+  background: linear-gradient(135deg, #1a1a2e 0%, #25253f 100%);
+  border-color: rgba(0, 102, 204, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .statCard:hover {
+  border-color: #00a3ff;
+  box-shadow: 0 8px 24px rgba(0, 102, 204, 0.2);
+  background: linear-gradient(135deg, #1a1a2e 0%, rgba(0, 102, 204, 0.05) 100%);
+}
+
+[data-theme="dark"] .statIcon {
+  color: #00a3ff;
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.15) 0%, rgba(0, 212, 132, 0.08) 100%);
+}
+
+[data-theme="dark"] .statLabel {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="dark"] .dailyLimitSection {
+  background: linear-gradient(135deg, #1a1a2e 0%, #25253f 100%);
+  border-color: rgba(0, 102, 204, 0.25);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .limitHeader h3 {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .limitInfo {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .progressBar {
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .metricsSection h2,
+[data-theme="dark"] .featuresSection h2 {
+  background: linear-gradient(135deg, #ffffff 0%, #00a3ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .metricCard {
+  background: linear-gradient(135deg, #1a1a2e 0%, #25253f 100%);
+  border-color: rgba(0, 102, 204, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .metricCard:hover {
+  border-color: #00a3ff;
+  box-shadow: 0 12px 28px rgba(0, 102, 204, 0.2);
+  background: linear-gradient(135deg, #1a1a2e 0%, rgba(0, 102, 204, 0.05) 100%);
+}
+
+[data-theme="dark"] .metricIcon {
+  color: #00a3ff;
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.15) 0%, rgba(0, 212, 132, 0.08) 100%);
+}
+
+[data-theme="dark"] .metricLabel {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="dark"] .metricDescription {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .featureItem {
+  background: linear-gradient(135deg, #1a1a2e 0%, #25253f 100%);
+  border-color: rgba(0, 102, 204, 0.25);
+}
+
+[data-theme="dark"] .featureItem:hover {
+  border-color: #00a3ff;
+  background: linear-gradient(135deg, #1a1a2e 0%, rgba(0, 102, 204, 0.08) 100%);
+  box-shadow: 0 8px 20px rgba(0, 102, 204, 0.15);
+}
+
+[data-theme="dark"] .featureItem strong {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .featureItem p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .featureIcon {
+  color: #00a3ff;
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.15) 0%, rgba(0, 212, 132, 0.08) 100%);
+  border-color: rgba(0, 102, 204, 0.3);
+}
+
+[data-theme="dark"] .quickActionsSection {
+  background: linear-gradient(135deg, #1a1a2e 0%, #25253f 100%);
+  border-color: rgba(0, 102, 204, 0.25);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .quickActionsSection h2 {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .actionButton {
+  background: linear-gradient(135deg, #1a1a2e 0%, rgba(0, 102, 204, 0.03) 100%);
+  border-color: rgba(0, 102, 204, 0.25);
+}
+
+[data-theme="dark"] .actionButton:hover {
+  border-color: #00a3ff;
+  background: linear-gradient(135deg, #1a1a2e 0%, rgba(0, 102, 204, 0.08) 100%);
+  box-shadow: 0 12px 32px rgba(0, 102, 204, 0.2);
+}
+
+[data-theme="dark"] .actionIcon {
+  color: #00a3ff;
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.15) 0%, rgba(0, 212, 132, 0.08) 100%);
+}
+
+[data-theme="dark"] .actionButton strong {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .actionButton small {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .contentGrid {
+  background: transparent;
+}
+
+[data-theme="dark"] .emptyState {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .limitReachedBox {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, rgba(255, 193, 7, 0.05) 100%);
+  border-color: rgba(255, 193, 7, 0.25);
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.08);
+}
+
+[data-theme="dark"] .limitReachedBox strong {
+  color: #ffb74d;
+}
+
+[data-theme="dark"] .limitReachedBox p {
+  color: #ffb74d;
+}
+
+[data-theme="dark"] .upgradeLink {
+  background: linear-gradient(135deg, #0066cc 0%, #00d084 100%);
+  box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
+}
+
+[data-theme="dark"] .upgradeLink:hover {
+  box-shadow: 0 6px 24px rgba(0, 102, 204, 0.5);
 }
